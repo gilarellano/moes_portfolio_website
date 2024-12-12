@@ -2,7 +2,7 @@
 import {
   Avatar,
   Bio,
-  ListOfProjects,
+  ListOfSkills,
   Menu,
   SocialMediaLinks,
   ListOfExperiences,
@@ -34,8 +34,9 @@ export default async function Home() {
         {/* Right Column */}
         <div className="pt-24 lg:w-1/2 lg:py-24">
           <Bio />
-          <ListOfProjects />
           <ListOfExperiences />
+          <ListOfSkills /> {/* Add the skills section here */}
+          {/* <ListOfProjects /> */}
         </div>
       </div>
     </div>

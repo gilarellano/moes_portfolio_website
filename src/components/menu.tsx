@@ -27,20 +27,14 @@ const menuItems: MenuItem[] = [
     icon: BioIcon,
   },
   {
-    href: "#projects",
-    label: "Projects",
-    icon: ProjectIcon,
-  },
-  {
     href: "#experiences",
     label: "Experiences",
     icon: ExperienceIcon,
   },
   {
-    href: "/ArellanoGilbertoResume.pdf",
-    label: "Resume",
-    icon: ResumeIcon,
-    isExternal: true,
+    href: "#skills",
+    label: "Technical Skills",
+    icon: ExperienceIcon,
   },
 ];
 
@@ -52,7 +46,7 @@ const Menu: React.FC<MenuProps> = ({
     <nav className="nav hidden lg:block">
       <ul
         role="list"
-        className="gap-1 bg-opacity-10 mt-8 p-1.5 flex flex-col border-custom rounded-custom w-fit h-fit bg-neutral-700/20 drop-shadow-xl shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)]"
+        className="gap-1 bg-opacity-10 mt-8 p-1.5 flex flex-col border-custom rounded-custom w-fit h-fit bg-card drop-shadow-xl shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)]"
       >
         {menuItems.map((item, index) => {
           const isActive = activeItem === item.href;
@@ -60,13 +54,13 @@ const Menu: React.FC<MenuProps> = ({
           return (
             <li
               key={index}
-              className={`group/item ${isActive ? "bg-emerald-600/10 rounded-md text-primary" : ""}`}
+              className={`group/item ${isActive ? "bg-hover rounded-md text-primary" : ""}`}
             >
               {/* Prevents from adding an additional layer of the bg-emerald when hovered over an active item */}
               <a
                 href={item.href}
                 className={`flex flex-row gap-1.5 items-center rounded-md py-1.5 px-3 
-                ${isActive ? "bg-emerald-600/10" : "hover:bg-emerald-600/10"}`}
+                ${isActive ? "bg-hover" : "hover:bg-hover"}`}
                 onClick={() => !item.isExternal && handleClick(item.href)}
                 target={item.isExternal ? "_blank" : "_self"}
                 rel={item.isExternal ? "noopener noreferrer" : undefined}

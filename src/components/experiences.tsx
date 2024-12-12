@@ -11,20 +11,58 @@ interface Experience {
 
 const experiences: Experience[] = [
   {
-    href: "https://www.gilbertowindows.com/",
-    period: "2012 - PRESENT",
-    role: "Operations and Technology Administrator",
-    company: "Gilberto Arellano Windows, San Francisco",
+    href: "#",
+    period: "2024",
+    role: "Sales Software Implementation",
+    company: "Healthcare Company",
     description:
-      "I developed a C++ program that calculates window quotes based on measurements, wood, glass, and window type, reducing the calculation process by over 90%. I also created and maintain a CRM dashboard on Monday.com, managing 20-30 client projects and improving email response times from 1-2 days to about 4 hours.",
+      "Designed and implemented a tailored sales solution to streamline operations and improve user adoption, leading to enhanced business processes and efficiency.",
+    technologies: ["Dynamics 365", "Power Platform", "Sales Hub"],
   },
   {
-    href: "https://www.yelp.com/biz/la-capilla-berkeley",
-    period: "2016 - 2019",
-    role: "Restaurant Co-Owner",
-    company: "La Capilla, Berkeley",
+    href: "#",
+    period: "2024",
+    role: "Power Pages (Portal) Implementation",
+    company: "Healthcare Company",
     description:
-      "I managed a team of 10-12 employees, overseeing daily operations and ensuring a positive and productive workplace environment. I was responsible for hiring, training, and mentoring staff, focusing on building a cohesive team and maintaining high morale. My leadership approach emphasized clear communication, teamwork, and a commitment to delivering excellent customer service, which contributed to generating $50-$60k in monthly sales.",
+      "Developed and deployed a custom portal to enhance interactions and improve accessibility for healthcare services.",
+    technologies: ["Power Pages", "Power Platform", "Azure"],
+  },
+  {
+    href: "#",
+    period: "2022",
+    role: "Project Operations Implementation",
+    company: "Healthcare Company",
+    description:
+      "Configured and launched project operations tools to optimize resource management and streamline project tracking.",
+    technologies: ["Project Operations", "Dynamics 365", "Power Automate"],
+  },
+  {
+    href: "#",
+    period: "2022",
+    role: "Sales Software Implementation",
+    company: "Food & Beverage Company",
+    description:
+      "Implemented a sales software solution to enhance customer relationship management and provide actionable insights for the sales team.",
+    technologies: ["Dynamics 365", "Power BI", "Sales Hub"],
+  },
+  {
+    href: "#",
+    period: "2021",
+    role: "Customer Service Implementation",
+    company: "Bio-Chemical Company",
+    description:
+      "Designed a custom CRM solution to enhance customer service workflows and improve responsiveness to client inquiries.",
+    technologies: ["Customer Service Hub", "Power Automate", "Power Apps"],
+  },
+  {
+    href: "#",
+    period: "2021",
+    role: "Power Pages (Portal) Implementation",
+    company: "Government Project",
+    description:
+      "Built a secure and user-friendly portal for government operations, focusing on accessibility and efficiency for public services.",
+    technologies: ["Power Pages", "Azure AD", "Power Platform"],
   },
 ];
 
@@ -46,8 +84,8 @@ const ListOfExperiences: React.FC = () => {
             key={index}
             className="group relative mb-10 rounded-md transition-all lg:hover:!opacity-100 lg:group-hover/list:opacity-50"
           >
-            <a href={experience.href} target="_blank">
-              <div className="absolute -inset-x-6 -inset-y-4 z-0 hidden lg:block rounded-md motion-reduce:transition-none group-hover:bg-neutral-700/20 group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] group-hover:drop-shadow-lg"></div>
+            <div className="cursor-pointer">
+              <div className="absolute -inset-x-6 -inset-y-4 z-0 hidden lg:block rounded-md motion-reduce:transition-none group-hover:bg-card group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] group-hover:drop-shadow-lg"></div>
               <div className="relative z-10 flex flex-col gap-y-2 lg:flex-row lg:gap-x-4">
                 <p className="pt-0.5 lg:w-[86px] shrink-0 text-secondary-text font-light text-sm lg:text-xs">
                   {experience.period}
@@ -67,7 +105,7 @@ const ListOfExperiences: React.FC = () => {
                     </p>
                   </div>
                   {experience.technologies && (
-                    <ul className="flex flex-grid pt-2 gap-3 text-primary text-sm lg:text-xs font-extralight *:rounded-full *:bg-emerald-600/20 *:px-3 *:py-1">
+                    <ul className="flex flex-wrap pt-2 gap-3 text-primary text-sm lg:text-xs font-extralight *:rounded-full *:bg-tag *:px-3 *:py-1">
                       {experience.technologies.map((tech, techIndex) => (
                         <li key={techIndex}>{tech}</li>
                       ))}
@@ -75,7 +113,7 @@ const ListOfExperiences: React.FC = () => {
                   )}
                 </div>
               </div>
-            </a>
+            </div>
           </li>
         ))}
       </ol>

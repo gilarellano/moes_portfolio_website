@@ -23,7 +23,7 @@ const customTooltip = ({
     <div className="flex rounded-tremor-default border-custom-width border-custom bg-background p-2 text-tremor-default shadow-tremor-dropdown">
       {payload.map((category, idx) => (
         <div key={idx} className="flex flex-1 space-x-2.5">
-          <div className={`flex w-1 flex-col bg-emerald-500 rounded`} />
+          <div className={`flex w-1 flex-col bg-primary rounded`} />
           <div className="space-y-1">
             <p className="text-secondary-text">{date}</p>
             <p className="font-small font-bold text-primary-text">
@@ -45,7 +45,7 @@ export default function AreaChartHero({
 
   return (
     <div className="lg:max-w-[400px]">
-      <div className="flex flex-col items-center bg-neutral-700/20 shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] drop-shadow-lg mb-8 p-4 rounded-custom">
+      <div className="flex flex-col items-center bg-card shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] drop-shadow-lg mb-8 p-4 rounded-custom">
         <div className="flex flex-row justify-between w-full px-0.5">
           <span className="hidden sm:flex flex-row gap-x-1 items-center">
             <h2 className="text-base md:text-lg lg:text-sm text-secondary-text">
@@ -71,7 +71,7 @@ export default function AreaChartHero({
           data={chartData}
           index="date"
           categories={["Visitors"]}
-          colors={["emerald"]}
+          colors={["purple"]}
           showLegend={false}
           yAxisWidth={32}
           showAnimation={true}
@@ -81,7 +81,7 @@ export default function AreaChartHero({
         />
       </div>
 
-      <div className="flex flex-col items-center bg-neutral-700/20 shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] drop-shadow-lg mb-8 p-4 rounded-custom">
+      <div className="flex flex-col items-center bg-card shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] drop-shadow-lg mb-8 p-4 rounded-custom">
         <div className="flex flex-row justify-between w-full px-0.5">
           <span className="hidden sm:flex flex-row gap-x-1 items-center">
             <h2 className="text-base md:text-lg lg:text-sm text-secondary-text">
@@ -117,7 +117,7 @@ export default function AreaChartHero({
           index="date"
           categories={["AvgLoadTime"]}
           valueFormatter={valueFormatter}
-          colors={["emerald"]}
+          colors={["purple"]}
           showLegend={false}
           yAxisWidth={50}
           showAnimation={true}

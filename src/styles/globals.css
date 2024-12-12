@@ -4,38 +4,56 @@
 
 /* styles/global.css */
 :root {
-  --primary-color: #6ee7b7; /* emerald */
-  --background-color: #202023;
-  --primary-text-color: #e0e0e0;
-  --secondary-text-color: #b0b0b0;
-  --border-color: #444444;
+  /* Main Colors - Using a rich indigo-purple palette */
+  --primary-color: #8b5cf6; /* vibrant purple */
+  --primary-color-light: #c4b5fd; /* lighter purple for highlights */
+  --primary-color-dark: #6d28d9; /* darker purple for emphasis */
+  
+  /* Background Colors - Deep, rich dark theme */
+  --background-color: #13111C; /* deep purple-tinted dark */
+  --background-hover: rgba(139, 92, 246, 0.1); /* primary color with low opacity */
+  --background-card: rgba(139, 92, 246, 0.03); /* for cards and containers */
+  
+  /* Text Colors - For readability on dark background */
+  --primary-text-color: #E2E8F0; /* slightly warmer than pure white */
+  --secondary-text-color: #9CA3AF; /* muted gray with slight purple tint */
+  
+  /* UI Elements */
+  --border-color: #2D2B3A; /* subtle purple-tinted border */
   --border-radius: 6px;
   --border-width: 1.5px;
+  
+  /* Component Specific */
+  --menu-hover-bg: rgba(139, 92, 246, 0.1);
+  --card-hover-bg: rgba(139, 92, 246, 0.12);
+  --tag-bg: rgba(139, 92, 246, 0.15);
+  
+  /* Other */
   --font-family: "Inter", sans-serif;
 }
 
-/* Dark Theme */
+/* Dark Theme - Could be even darker for contrast */
 [data-theme="dark"] {
-  --primary-color: #6ee7b7; /* emerald */
-  --background-color: #2e2e2e;
-  --primary-text-color: #e0e0e0;
-  --font-family: "Inter", sans-serif;
+  --primary-color: #8b5cf6;
+  --background-color: #0F0E15;
+  --primary-text-color: #E2E8F0;
 }
 
+/* Light Theme - Keeping it cohesive with the purple scheme */
 [data-theme="light"] {
-  --primary-color: #6ee7b7; /* emerald */
-  --background-color: #fff;
-  --primary-text-color: #e0e0e0;
-  --font-family: "Inter", sans-serif;
+  --primary-color: #8b5cf6;
+  --background-color: #F8F7FF; /* very light purple tint */
+  --primary-text-color: #1A1625;
 }
 
-/* Apply the variables */
+/* Rest of your existing CSS remains the same */
 body {
   background-color: var(--background-color);
   color: var(--primary-text-color);
   font-family: var(--font-family);
 }
 
+/* Your existing utility classes remain the same */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -57,6 +75,15 @@ body {
   }
   .text-secondary-text {
     color: var(--secondary-text-color);
+  }
+  .bg-hover {
+    background-color: var(--background-hover);
+  }
+  .bg-card {
+    background-color: var(--background-card);
+  }
+  .bg-tag {
+    background-color: var(--tag-bg);
   }
   .border-custom {
     border-color: var(--border-color);
@@ -82,17 +109,8 @@ body {
   .stroke-primary {
     stroke: var(--primary-color);
   }
-  /* Add more utilities for any new variables */
 }
-
-/* styles/globals.css or any of your global CSS files */
 
 html {
   scroll-behavior: smooth;
 }
-
-/* {
-   Helps transition from light to dark mode, easier on the eyes
-}*/
-
-/* styles/globals.css or any of your global CSS files */

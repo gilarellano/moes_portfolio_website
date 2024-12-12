@@ -22,10 +22,10 @@ const Avatar = () => {
         <h1 className="text-3xl sm:text-4xl lg:text-4xl font-bold text-primary-text">
           {/*<h1 className="text-3xl lg:text-5xl font-bold text-primary-text sm:text-4xl">*/}
 
-          <a href="/">Gilberto Arellano</a>
+          <a href="/">Marisa Mini</a>
         </h1>
         <h2 className="ml-0.5 lg:ml-1 lg:text-xl font-light tracking-tight text-secondary-text sm:text-xl">
-          Software Engineer
+          Microsoft Dynamics Consultant
         </h2>
       </div>
     </div>
