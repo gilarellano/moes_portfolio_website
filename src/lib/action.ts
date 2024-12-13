@@ -1,21 +1,28 @@
 // lib/actions.ts
 "use server";
-import { sql } from "@vercel/postgres";
+import { supabase } from './db';
 import { unstable_cache as cache } from "next/cache";
 import { WeeklySummary } from "./definitions";
 
 // Function to log visitor info and return the visitor ID
 export async function logVisitor(
-  pageLoadTime: number,
+  pageLoadTime: number
 ): Promise<{ visitorId: number }> {
   try {
-    const result = await sql`
-      INSERT INTO visitors (visit_date, page_load_time_ms)
-      VALUES (NOW(), ${pageLoadTime})
-      RETURNING id
-    `;
+    const { data, error } = await supabase
+      .from('visitors')
+      .insert([
+        { 
+          visit_date: new Date().toISOString(),
+          page_load_time_ms: pageLoadTime 
+        }
+      ])
+      .select('id')
+      .single();
 
-    const visitorId = result.rows[0].id;
+    if (error) throw error;
+    
+    const visitorId = data.id;
     return { visitorId };
   } catch (error) {
     console.error("Database Error:", error);
@@ -25,60 +32,54 @@ export async function logVisitor(
 
 export async function calculateWeeklySummary(): Promise<void> {
   try {
-    // Step 1: Fetch Total Visitor Count
-    const totalVisitorsResult =
-      await sql`SELECT COUNT(*) as count FROM visitors`;
-    const totalVisitors = totalVisitorsResult.rows[0].count;
-    console.log("Total Visitors:", totalVisitors);
+    // Step 1: Get the end date of the most recent summary
+    const { data: mostRecentWeek, error: recentError } = await supabase
+      .from('weeklysummary')
+      .select('week_end')
+      .order('week_end', { ascending: false })
+      .limit(1)
+      .single();
 
-    // Step 2: Fetch Most Recent Week's Visitor Count and End Date
-    const mostRecentWeekResult = await sql`
-      SELECT visitor_count, week_end FROM weeklysummary
-      ORDER BY week_end DESC
-      LIMIT 1
-    `;
-    const mostRecentWeekCount =
-      mostRecentWeekResult.rows[0]?.visitor_count || 0;
-    const previousWeekEndDate =
-      mostRecentWeekResult.rows[0]?.week_end || new Date();
-    console.log("Most Recent Week Count:", mostRecentWeekCount);
-    console.log("Previous Week End Date:", previousWeekEndDate);
+    if (recentError) throw recentError;
 
-    // Step 3: Calculate Weekly Visitor Count
-    const weeklyVisitorCount = totalVisitors - mostRecentWeekCount;
-    console.log("Weekly Visitor Count:", weeklyVisitorCount);
+    const previousWeekEndDate = mostRecentWeek?.week_end || new Date(0).toISOString();
 
-    // Step 4: Fetch Last Weeks Records
-    const lastWeeksRecordsResult = await sql`
-      SELECT page_load_time_ms FROM visitors
-      ORDER BY visit_date DESC
-      LIMIT ${weeklyVisitorCount}
-    `;
-    const lastWeeksRecords = lastWeeksRecordsResult.rows;
-    console.log("Last weeks records:", lastWeeksRecords);
+    // Step 2: Count visitors and calculate average load time since the last summary
+    const { data: visitorStats, error: statsError } = await supabase
+      .from('visitors')
+      .select('visit_date, page_load_time_ms')
+      .gt('visit_date', previousWeekEndDate);
 
-    // Step 5: Calculate Average Load Time
-    const totalLoadTime = lastWeeksRecords.reduce(
-      (acc, record) => acc + record.page_load_time_ms,
-      0,
-    );
-    const averageLoadTime = weeklyVisitorCount
-      ? totalLoadTime / weeklyVisitorCount
+    if (statsError) throw statsError;
+
+    const weeklyVisitorCount = visitorStats?.length || 0;
+    const averageLoadTime = weeklyVisitorCount > 0
+      ? visitorStats.reduce((sum, visitor) => sum + visitor.page_load_time_ms, 0) / weeklyVisitorCount
       : 0;
-    console.log("Average Load Time:", averageLoadTime);
 
-    // Step 6: Create Weekly Metrics
-    const weekStart = new Date(previousWeekEndDate);
-    const weekEnd = new Date();
-    console.log("Week Start:", weekStart);
-    console.log("Week End:", weekEnd);
+    // Only create a new summary if there are new visitors
+    if (weeklyVisitorCount > 0) {
+      const weekStart = new Date(previousWeekEndDate);
+      const weekEnd = new Date();
 
-    await sql`
-      INSERT INTO weeklysummary (week_start, week_end, visitor_count, avg_load_time_ms)
-      VALUES (${weekStart.toISOString()}, ${weekEnd.toISOString()}, ${weeklyVisitorCount}, ${averageLoadTime})
-    `;
+      const { error: insertError } = await supabase
+        .from('weeklysummary')
+        .insert([{
+          week_start: weekStart.toISOString(),
+          week_end: weekEnd.toISOString(),
+          visitor_count: weeklyVisitorCount,
+          avg_load_time_ms: averageLoadTime
+        }]);
 
-    console.log("Weekly summary calculated");
+      if (insertError) throw insertError;
+
+      console.log({
+        weekStart,
+        weekEnd,
+        weeklyVisitorCount,
+        averageLoadTime
+      });
+    }
   } catch (error) {
     console.error("Error calculating weekly summary:", error);
     throw new Error("Failed to calculate weekly summary");
