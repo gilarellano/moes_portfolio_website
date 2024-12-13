@@ -21,18 +21,16 @@ const Bio = () => {
           >
             💼 RSM US LLP
           </a>
-          , specializing in CRM system implementations. With a degree 
-          in Data Science, I bring expertise in 
-          {" "}
+          , specializing in CRM system implementations. With a degree in Data Science,
+          I bring expertise in{" "}
           <a
             href="#projects"
             className="text-primary-text font-bold whitespace-nowrap hover:text-primary hover:underline hover:decoration-2 underline-offset-2"
           >
             📊 data analysis
           </a>
-          , predictive modeling, 
-          and machine learning to design and implement tailored CRM solutions that 
-          optimize functionality and improve user experiences.
+          , predictive modeling, and machine learning to design and implement tailored 
+          CRM solutions that optimize functionality and improve user experiences.
         </p>
 
         <p className="mb-4">
@@ -52,26 +50,6 @@ const Bio = () => {
           {" "}and later became a figure skating coach, a role that honed my leadership 
           and mentorship abilities. My diverse background blends technical proficiency 
           with a unique perspective on teamwork, discipline, and adaptability.
-        </p>
-
-        <p className="mb-4">
-          In my free time, I enjoy{" "}
-          <a
-            href="#"
-            className="text-primary-text font-bold whitespace-nowrap hover:text-primary hover:underline hover:decoration-2 underline-offset-2"
-          >
-            ✈️ traveling
-          </a>
-          , exploring new hiking trails, practicing photography, hitting the slopes for 
-          some skiing, and spending quality time with friends. I'm passionate about{" "}
-          <a
-            href="#"
-            className="text-primary-text font-bold whitespace-nowrap hover:text-primary hover:underline hover:decoration-2 underline-offset-2"
-          >
-            💪 staying active
-          </a>
-          {" "}through various sports and outdoor activities. These pursuits help 
-          me maintain a balanced lifestyle and fuel my creativity.
         </p>
       </div>
     </section>

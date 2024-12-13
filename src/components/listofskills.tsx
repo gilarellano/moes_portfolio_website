@@ -28,7 +28,7 @@ const skillCategories: SkillCategory[] = [
       },
       {
         subtitle: "Other Tools",
-        items: ["Advanced Excel", "XRM Toolbox", "Database management"]
+        items: ["Advanced Excel", "XRM Toolbox"]
       }
     ]
   },
@@ -72,25 +72,31 @@ const ListOfSkills: React.FC = () => {
         </h2>
       </div>
 
-      <div className="bg-card rounded-custom shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] drop-shadow-lg p-6">
+      <div className="flex flex-col gap-8">
         {skillCategories.map((category, index) => (
           <div 
             key={index}
-            className={`${index !== 0 ? "mt-8" : ""}`}
+            className="group relative rounded-md transition-all"
           >
             <h3 className="text-primary-text text-xl lg:text-lg font-bold mb-4">
               {category.title}
             </h3>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-6">
               {category.skills.map((skillSet, skillIndex) => (
-                <div key={skillIndex} className="ml-2">
-                  <h4 className="text-primary text-base lg:text-sm font-medium mb-2">
+                <div 
+                  key={skillIndex}
+                  className="bg-card p-4 rounded-custom shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] drop-shadow-lg"
+                >
+                  <h4 className="text-primary-text text-base lg:text-sm font-medium mb-3">
                     {skillSet.subtitle}
                   </h4>
-                  <ul className="flex flex-wrap gap-2 text-secondary-text text-sm lg:text-sm">
-                    {skillSet.items.map((item, itemIndex, array) => (
-                      <li key={itemIndex}>
-                        {item}{itemIndex < array.length - 1 ? " • " : ""}
+                  <ul className="flex flex-wrap gap-2">
+                    {skillSet.items.map((item, itemIndex) => (
+                      <li
+                        key={itemIndex}
+                        className="bg-tag px-3 py-1 rounded-full text-primary text-sm lg:text-xs font-light"
+                      >
+                        {item}
                       </li>
                     ))}
                   </ul>
