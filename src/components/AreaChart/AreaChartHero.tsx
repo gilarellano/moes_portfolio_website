@@ -6,6 +6,7 @@ import { MouseClickIcon, ClockIcon } from "@/assets/icons";
 import { AreaChart } from "@tremor/react";
 import { usePageLoadTime } from "@/utils/usePageLoadTime";
 import { AreaChartHeroProps, CustomTooltipProps } from "@/lib/definitions";
+import { formatLoadTime } from "@/utils";
 
 const valueFormatter = (number: number): string => {
   return `${number.toFixed(2)}s`;
@@ -88,7 +89,7 @@ export default function AreaChartHero({
               Avg. Page Load Time:
             </h2>
             <p className="text-base md:text-lg lg:text-sm font-bold text-primary-text">
-              {`${(avgLoadTime / 1000).toFixed(2)}`}s
+              {`${formatLoadTime(avgLoadTime)}`}s
             </p>
           </span>
           <div className="flex flex-row items-center gap-x-1 py-1 px-2 rounded-custom text-secondary-text">
@@ -97,7 +98,7 @@ export default function AreaChartHero({
               Your Time:{" "}
               <b className="text-primary inline-block w-[40px]">
                 {pageLoadTime !== undefined
-                  ? `${(pageLoadTime / 1000).toFixed(2)}s`
+                  ? `${formatLoadTime(pageLoadTime)}s`
                   : "-.--s"}
               </b>
             </p>

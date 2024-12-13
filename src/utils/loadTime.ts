@@ -5,25 +5,20 @@ import { logVisitor } from "@/lib/action";
 
 export function getPageLoadTime(): Promise<number> {
   return new Promise((resolve) => {
-    if (window.performance?.timing) {
-      // For older browsers using Navigation Timing API
-      const loadTime = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart;
-      resolve(loadTime);
-    } else {
-      // For modern browsers using Navigation Timing API Level 2
-      const checkPerformanceEntries = () => {
-        const navigationEntries = performance.getEntriesByType('navigation') as PerformanceNavigationTiming[];
-        
-        if (navigationEntries.length > 0 && navigationEntries[0].loadEventEnd > 0) {
-          const pageLoadTime = navigationEntries[0].loadEventEnd;
-          resolve(pageLoadTime);
-        } else {
-          setTimeout(checkPerformanceEntries, 100);
-        }
-      };
+    const checkPerformanceEntries = () => {
+      const navigationEntries = performance.getEntriesByType(
+        "navigation"
+      ) as PerformanceNavigationTiming[];
 
-      checkPerformanceEntries();
-    }
+      if (navigationEntries.length > 0 && navigationEntries[0].duration > 0) {
+        const pageLoadTime = Math.max(0, navigationEntries[0].duration); // Ensure non-negative
+        resolve(pageLoadTime);
+      } else {
+        setTimeout(checkPerformanceEntries, 100);
+      }
+    };
+
+    checkPerformanceEntries();
   });
 }
 

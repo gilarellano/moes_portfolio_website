@@ -14,5 +14,6 @@ export const processWeeklySummary = (data: WeeklySummary[]) => {
 };
 
 export const formatLoadTime = (milliseconds: number) => {
-  return parseFloat((milliseconds / 1000).toFixed(2));
+  const seconds = Math.max(0, milliseconds) / 1000; // Ensure non-negative before division
+  return parseFloat(seconds.toFixed(2));
 };
