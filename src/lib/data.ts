@@ -10,7 +10,7 @@ export async function fetchWeeklySummary() {
       .from('weeklysummary')
       .select('*')
       .order('week_start', { ascending: false })
-      .limit(4);
+      .limit(20);
 
     if (error) throw error;
     return processWeeklySummary(data);

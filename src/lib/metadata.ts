@@ -1,8 +1,8 @@
 // src/lib/metadata.ts
 import type { Metadata, Viewport } from "next";
 
-const siteUrl = process.env.BASE_URL || "http://gilber.to";
-const imageUrl = process.env.BASE_IMAGE_URL || "http://gilber.to/opengraph.png";
+const siteUrl = process.env.BASE_URL || " https://www.marisamini.com/";
+const imageUrl = process.env.BASE_IMAGE_URL || "http://marisamini.com/opengraph.png";
 
 export const metadataConfig: Metadata = {
   title: {
