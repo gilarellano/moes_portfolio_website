@@ -29,8 +29,7 @@ const Bio = () => {
           >
             📊 data analysis
           </a>
-          , predictive modeling, and machine learning to design and implement tailored 
-          CRM solutions that optimize functionality and improve user experiences.
+          , predictive modeling, and machine learning.
         </p>
 
         <p className="mb-4">

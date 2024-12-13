@@ -26,20 +26,20 @@ const experiences: Experience[] = [
     company: "Healthcare Company",
     description:
       "Developed and deployed a custom portal to enhance interactions and improve accessibility for healthcare services.",
-    technologies: ["Power Pages", "Power Platform", "Azure"],
+    technologies: ["Power Pages", "Power Platform", "Azure", "JavaScript", "HTML"],
   },
   {
     href: "#",
-    period: "2022",
+    period: "2024",
     role: "Project Operations Implementation",
     company: "Healthcare Company",
     description:
-      "Configured and launched project operations tools to optimize resource management and streamline project tracking.",
-    technologies: ["Project Operations", "Dynamics 365", "Power Automate"],
+      "Co-designed project operations tools to optimize resource management and streamline project tracking.",
+    technologies: ["Project Operations", "Dynamics 365"],
   },
   {
     href: "#",
-    period: "2022",
+    period: "2024",
     role: "Sales Software Implementation",
     company: "Food & Beverage Company",
     description:
@@ -48,21 +48,21 @@ const experiences: Experience[] = [
   },
   {
     href: "#",
-    period: "2021",
+    period: "2023",
     role: "Customer Service Implementation",
     company: "Bio-Chemical Company",
     description:
-      "Designed a custom CRM solution to enhance customer service workflows and improve responsiveness to client inquiries.",
-    technologies: ["Customer Service Hub", "Power Automate", "Power Apps"],
+      "Built a custom CRM solution to enhance customer service workflows and improve responsiveness to client inquiries.",
+    technologies: ["Customer Service Hub", "Power Apps"],
   },
   {
     href: "#",
-    period: "2021",
+    period: "2023",
     role: "Power Pages (Portal) Implementation",
     company: "Government Project",
     description:
       "Built a secure and user-friendly portal for government operations, focusing on accessibility and efficiency for public services.",
-    technologies: ["Power Pages", "Azure AD", "Power Platform"],
+    technologies: ["Power Pages", "Azure AD", "Power Platform", "JavaScript", "HTML"],
   },
 ];
 
