@@ -3,9 +3,7 @@
 import React from "react";
 import {
   BioIcon,
-  ProjectIcon,
   ExperienceIcon,
-  ResumeIcon,
 } from "@/assets/icons";
 
 interface MenuItem {
